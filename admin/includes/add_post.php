@@ -1,13 +1,13 @@
 <?php 
 if(isset($_POST['create_post'])){
 
-   $post_title = $_POST['title'];
-   $post_author = $_POST['author'];
+   $post_title = $_POST['post_title'];
+   $post_author = $_POST['post_author'];
    $post_category_id = $_POST['post_category_id'];
    $post_status = $_POST['post_status'];
-   
-   $post_image = $_FILES['image']['name'];
-   $post_image_temp = $_FILES['image']['tmp_name'];
+   print_r($_FILES);
+   $post_image = $_FILES['post_image']['name'];
+   $post_image_temp = $_FILES['post_image']['tmp_name'];
    
    $post_tags = $_POST['post_tags'];
    $post_content = $_POST['post_content'];
@@ -20,7 +20,9 @@ if(isset($_POST['create_post'])){
    $query = "INSERT INTO posts(post_category_id, post_title, post_date, post_author,
    post_image, post_content, post_tags, post_comment_count, post_status) ";
 
-   $query .= "VALUES({$post_category_id},'{$post_title}', now(), '{$post_author}','{$post_image}', '{$post_content}', '{$post_tags}', '{$post_comment_count}', '{$post_status}')";
+   $query .= "VALUES({$post_category_id},'{$post_title}', now(), '{$post_author}',
+   '{$post_image}', '{$post_content}', '{$post_tags}', '{$post_comment_count}', 
+   '{$post_status}')";
 
    
    $create_post_query = mysqli_query($connection, $query);
@@ -35,7 +37,7 @@ if(isset($_POST['create_post'])){
 
    <div class="form-group">
       <label for="title">Post Title</label>
-         <input type="text" class="form-control" name="title">
+         <input type="text" class="form-control" name="post_title">
    </div>
 
    <div class="form-group">
@@ -45,7 +47,7 @@ if(isset($_POST['create_post'])){
 
    <div class="form-group">
       <label for="post_author">Post Author</label>
-         <input type="text" class="form-control" name="author">
+         <input type="text" class="form-control" name="post_author">
    </div>
 
    <div class="form-group">
@@ -55,7 +57,7 @@ if(isset($_POST['create_post'])){
 
    <div class="form-group">
       <label for="post_image">Post Image</label>
-         <input type="file" class="form-control" name="image">
+         <input type="file" class="form-control" name="post_image">
    </div>
 
    <div class="form-group">
