@@ -22,7 +22,12 @@ include "includes/navigation.php";
 
     <?php
 
-        $query = "SELECT * FROM posts";
+    if(isset($_GET['category'])){
+      $post_category_id = $_GET['category'] ;
+
+    }
+
+        $query = "SELECT * FROM posts WHERE post_category_id = '{$post_category_id}'";
         $select_all_posts_query = mysqli_query($connection,$query);
 
         while($row = mysqli_fetch_assoc($select_all_posts_query)){
@@ -53,8 +58,8 @@ include "includes/navigation.php";
         </p>
         <p><span class="glyphicon glyphicon-time"></span> <?php echo $post_date ?></p>
         <hr>
-        <img class="img-responsive" src="images/<?php echo $post_image
-        ;?>" alt="">; 
+        
+        <img class="img-responsive" src="images/<?php echo $post_image;?>" alt="">; 
         <hr>
         <p><?php echo $post_content ?></p>
         <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
