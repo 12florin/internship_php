@@ -26,7 +26,7 @@
     $the_post_id = $_GET['p_id'];
     }
         
-    $query = "SELECT * FROM posts WHERE post_id ='{$the_post_id}'";
+    $query = "SELECT * FROM posts WHERE post_id  ='{$the_post_id}'";
     $select_all_posts_query = mysqli_query($connection,$query);
 
 
@@ -45,17 +45,16 @@
 
     <!-- First Blog Post -->
     <h2>
-        <a href="#"><?php echo $post_title ?></a>
+        <a href="#"><?php echo $post_title; ?></a>
     </h2>
     <p class="lead">
-        by <a href="index.php"><?php echo $post_author ?></a>
+        by <a href="index.php"><?php echo $post_author; ?></a>
     </p>
-    <p><span class="glyphicon glyphicon-time"></span> <?php echo $post_date ?></p>
+    <p><span class="glyphicon glyphicon-time"></span> <?php echo $post_date; ?></p>
     <hr>
-    <img class="img-responsive" src="images/<?php echo $post_image
-    ;?>" alt="">; 
+    <img class="img-responsive" src="images/<?php echo $post_image;?>" alt="">; 
     <hr>
-    <p><?php echo $post_content ?></p>
+    <p><?php echo $post_content ;?></p>
     <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
 
     <hr>
@@ -69,7 +68,20 @@
     
     if(isset($_POST['create_comment'])){
 
-        echo $_POST['comment_author'];
+        $the_post_id = $_GET['p_id'];
+
+       $comment_author =  $_POST['comment_author'];
+       $comment_email =  $_POST['comment_email'];
+       $comment_content =  $_POST['comment_content'];
+
+       $query = "INSERT INTO comments (comment_post_id, comment_author, comment_email, comment_content, comment_status, comment_date)";
+
+       $query .= "VALUES ($the_post_id , '{$comment_author}', '{$comment_email}', '{$comment_content}', 'unapproved', now() )";
+
+       $create_comment_query = mysqli_query($connection, $query);
+        if(!$create_comment_query){
+            die('QUERY FAILED' .mysqli_error($connection));
+        }
 
     }
     
