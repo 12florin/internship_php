@@ -4,7 +4,11 @@
 <?php
 
 if(isset($_POST['login'])){
-   
+   $password = "secret0";
+   $has_format = "$2y$10&";
+   $salt = "iusesomecrazystrings22";
+
+   echo strlen($salt);
  $username = $_POST['username'];
  $password = $_POST['password'];
 
@@ -28,6 +32,8 @@ if(isset($_POST['login'])){
          $db_user_role = $row['user_role'];
 
       }
+
+   $password = crypt ($password, $db_user_password);
 //  != not equal
 // == equal
 // === identical
