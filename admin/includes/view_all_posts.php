@@ -30,6 +30,31 @@ if(isset($_POST['checkBoxArray'])){
                $update_to_delete_status = mysqli_query($connection,$query); 
                confirmQuery($update_to_delete_status);
              break;
+
+             case 'clone':
+               $query = "SELECT * FROM posts WHERE post_id = '$postValueId' "; 
+               $select_post_query = mysqli_query($connection,$query); 
+
+               while($row = mysqli_fetch_assoc($select_post_query)){
+                  $post_title =  $row['post_title'];
+                  $post_category_id =  $row['post_category_id'];
+                  $post_date =  $row['post_date'];
+                  $post_author =  $row['post_author'];
+                  $post_status =  $row['post_status'];
+                  $post_image =  $row['post_image'];
+                  $post_tags =  $row['post_tags'];
+                  $post_content =  $row['post_content'];
+               }
+         $query = "INSERT INTO posts (post_title, post_category_id, post_date, post_author, post_status, post_image, post_tags, post_content) ";
+
+         $query .=" VALUES ('{$post_title}', {$post_category_id}, now(), '{$post_author}', 
+         '{$post_status}', '{$post_image}', '{$post_tags}', '{$post_content}' )";
+
+               $copy_query = mysqli_query($connection,$query);
+               if(!$copy_query){
+                  die("QUERY FAILED ". mysqli_error($connection));
+               }
+             break;  
      }
 
    }
@@ -49,6 +74,7 @@ if(isset($_POST['checkBoxArray'])){
          <option value="published">Publish</option>
          <option value="draft">Draft</option>
          <option value="delete">Delete</option>   
+         <option value="clone">Clone</option>   
       </select>
 
     </div>
@@ -81,7 +107,7 @@ if(isset($_POST['checkBoxArray'])){
 
       <?php
       
-      $query = "SELECT * FROM posts";
+      $query = "SELECT * FROM posts ORDER BY post_id DESC";
          $select_posts = mysqli_query($connection,$query);
 
       while($row = mysqli_fetch_assoc($select_posts)){
