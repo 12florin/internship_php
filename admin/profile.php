@@ -19,32 +19,22 @@ if(isset($_SESSION['username'])){
    }
 
 }
-
 ?>
 
 <?php
 
 if(isset($_POST['edit_user'])){
-
    
    $user_firstname = $_POST['user_firstname'];
    $user_lastname = $_POST['user_lastname'];
-   $user_role = $_POST['user_role'];
-
-   // $post_image = $_FILES['post_image']['name'];
-   // $post_image_temp = $_FILES['post_image']['tmp_name'];
    
    $username = $_POST['username']; 
    $user_email = $_POST['user_email'];
    $user_password = $_POST['user_password'];
-   // $post_date = date('d-m-y');
-
-   // move_uploaded_file($post_image_temp, "../images/$post_image");
-
+ 
    $query = "UPDATE users SET ";
    $query .= "user_firstname = '{$user_firstname}', ";
    $query .= "user_lastname = '{$user_lastname}', ";
-   $query .= "user_role ='{$user_role}', ";
    $query .= "username = '{$username}', ";
    $query .= "user_email = '{$user_email}', ";
    $query .= "user_password = '{$user_password}' ";
@@ -54,10 +44,7 @@ if(isset($_POST['edit_user'])){
    confirmQuery($edit_user_query);
  }
 
-
-
 ?>
-
 
 <div id="wrapper">
 <!-- Navigation -->
@@ -86,20 +73,7 @@ if(isset($_POST['edit_user'])){
          <input type="text" value ="<?php echo $user_lastname; ?>" class="form-control" name="user_lastname">
    </div>
 
-<div class="form-group">
-      <select name="user_role" id="">
-         <option value="<?php echo $user_role; ?>"><?php echo $user_role;?> </option>
-
-         <?php
-         
-         if($user_role == 'admin'){
-               echo "<option value='subscriber'>subscriber</option>";
-         }else{
-            echo "<option value='admin'>admin</option>";
-         }
-
-         ?>
-      </select>
+ </select>
 </div>
 
    <!-- <div class="form-group">
@@ -119,7 +93,7 @@ if(isset($_POST['edit_user'])){
 
    <div class="form-group">
       <label for="post_content">Password</label>
-      <input type="password" value ="<?php echo $user_password; ?>" class="form-control" name="user_password">
+      <input autocomplete="off" type="password"  class="form-control" name="user_password">
    </div>
 
    <div class="form-group">

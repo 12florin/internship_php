@@ -1,14 +1,9 @@
 <?php include "db.php" ;?>
 <?php session_start();?>
-
 <?php
 
 if(isset($_POST['login'])){
-   $password = "secret0";
-   $has_format = "$2y$10&";
-   $salt = "iusesomecrazystrings22";
-
-   echo strlen($salt);
+   
  $username = $_POST['username'];
  $password = $_POST['password'];
 
@@ -33,13 +28,16 @@ if(isset($_POST['login'])){
 
       }
 
-   $password = crypt ($password, $db_user_password);
+  // $password = crypt ($password, $db_user_password);
+
 //  != not equal
 // == equal
 // === identical
 
-   if($username === $db_username && $password === $db_user_password ){
+   // if($username === $db_username && $password === $db_user_password ){
+   if(password_verify( $password, $db_user_password ) ){
       
+
       $_SESSION['username'] =$db_username;//assign from right to left
       $_SESSION['firstname'] =$db_user_firstname;
       $_SESSION['lastname'] =$db_user_lastname;

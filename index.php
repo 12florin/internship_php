@@ -65,7 +65,7 @@ include "includes/navigation.php";
 
         <!-- First Blog Post -->
 
-        <h1><?php echo $count ?></h1>
+       <!-- <h1><?php echo $count ?></h1> -->
 
         <h2>
             <!-- p_id - the key of the array of the GET superglobal for the id -->
