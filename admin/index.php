@@ -1,13 +1,6 @@
-<?php 
-include "includes/admin_header.php";
-
-?>
-
+<?php include "includes/admin_header.php"; ?>
 <div id="wrapper">
 
-<?php
-if ($connection) echo "Connection done";
-?>
 <!-- Navigation -->
     <?php include "includes/admin_navigation.php" ?>
     <div id="page-wrapper">
@@ -23,7 +16,7 @@ if ($connection) echo "Connection done";
     <?php  echo $_SESSION['username'];
             ?></small>
         </h1>
-        
+       
     </div>
 </div>
 
