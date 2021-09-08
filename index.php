@@ -74,7 +74,7 @@ include "includes/navigation.php";
 
         <h2>
             <!-- p_id - the key of the array of the GET superglobal for the id -->
-            <a href="post.php?p_id=<?php echo $post_id; ?> "><?php echo $post_title ?></a>
+            <a href="post/<?php echo $post_id; ?> "><?php echo $post_title ?></a>
         </h2>
         <p class="lead">
             by <a href="author_post.php?author=<?php echo $post_author ?>&p_id=<?php echo $post_id ?>"><?php echo $post_author ?></a>
