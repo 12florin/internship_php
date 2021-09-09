@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+<?php include "admin/functions.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,4 +28,8 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+
+
 </head>
+
+<body>

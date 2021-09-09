@@ -5,7 +5,6 @@ include "includes/db.php";
 // <!-- Navigation -->
 
 include "includes/navigation.php";
-include "admin/functions.php";
 
 
 ?>
