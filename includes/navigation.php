@@ -53,11 +53,7 @@
 
 
                     <?php endif; ?>
-
-
-
-
-                                 
+    
                      <li>
                         <a href="/cms/registration">Registration</a>
                     </li>

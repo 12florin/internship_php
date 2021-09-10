@@ -71,7 +71,7 @@ header("location: ../index.php");
 
 
 
- <script src="http://tinymce.cachefly.net/4.1/tinymce.min.js"></script>
+ <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 
     <!-- Can use this one below as well -->
 <!--   <script src="http://cdn.tinymce.com/4/tinymce.min.js"></script> -->

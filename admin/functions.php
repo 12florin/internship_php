@@ -1,5 +1,27 @@
 <?php
 
+
+function imagePlaceholder($image=''){
+        if(!$image){
+            return 'Kodak_gold.jpg';
+        }else{
+            return $image;
+        }
+}
+
+
+
+function currentUser(){
+    if(isset($_SESSION['username'])){
+
+        return $_SESSION['username'];
+    }
+    return false;
+}
+
+
+
+
 function redirect($location){
 
 
@@ -275,13 +297,12 @@ function is_admin($username) {
 
     $row = mysqli_fetch_array($result);
 
-
+    
     if($row['user_role'] == 'admin'){
 
         return true;
 
     }else {
-
 
         return false;
     }

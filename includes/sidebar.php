@@ -2,30 +2,22 @@
 <?php
 
 
-        if(ifItIsMethod('post')){
+    if(ifItIsMethod('post')){
 
+            if(isset($_POST['login'])){
 
-                if(isset($_POST['login'])){
+                if(isset($_POST['username']) && isset($_POST['password'])){
 
+                    login_user($_POST['username'], $_POST['password']);
 
-                    if(isset($_POST['username']) && isset($_POST['password'])){
+                }else {
 
-                        login_user($_POST['username'], $_POST['password']);
-
-
-                    }else {
-
-
-                        redirect('index');
-                    }
-
-
+                    redirect('index');
                 }
 
-        }
-
-?>
-
+            }
+    }
+    ?>
 
 
 <!-- Blog Sidebar Widgets Column -->
@@ -35,7 +27,7 @@
                 <!-- Blog Search Well -->
                 <div class="well">
                     <h4>Blog Search</h4>
-                    <form action="search.php" method="post">
+                    <form action="/cms/search.php" method="post">
                     <div class="input-group">
                         <input name="search" type="text" class="form-control">
                         <span class="input-group-btn">

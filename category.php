@@ -8,8 +8,6 @@ include "includes/navigation.php";
 
 
 ?>
-<body>
-
 
 
 <!-- Page Content -->
@@ -26,7 +24,7 @@ include "includes/navigation.php";
 
       $post_category_id = $_GET['category'] ;
 
-        if(is_admin($_SESSION['username'])){
+      if(isset($_SESSION['username']) && is_admin($_SESSION['username'])){
                 
             $stmt1 = mysqli_prepare($connection, "SELECT post_id, post_title, post_author, post_date, post_image, post_content FROM posts WHERE post_category_id = ?") ;
 
@@ -57,11 +55,11 @@ include "includes/navigation.php";
         }
 
 
-            if(mysqli_stmt_num_rows($stmt) ===0 ){
+            // if(mysqli_stmt_num_rows($stmt) ===0 ){
 
-                echo " <h2 class = 'text-center' >There are no posts available </h2>";
+            //     echo " <h2 class = 'text-center' >There are no posts available </h2>";
 
-            }
+            // }
 
             
         

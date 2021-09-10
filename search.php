@@ -27,7 +27,7 @@ include "includes/navigation.php";
                $search = $_POST['search'];
                      
 
-               $query ="SELECT * FROM posts WHERE post_tags LIKE '%$search' ";
+               $query ="SELECT * FROM posts WHERE post_tags LIKE '%$search%' ";
                $search_query = mysqli_query($connection, $query);
 
                if(!$search_query){
@@ -39,8 +39,7 @@ include "includes/navigation.php";
                   echo " <h1> NO RESULT </h1>";
                } else {
                   
-
-               while($row = mysqli_fetch_assoc($search_query)){
+          while($row = mysqli_fetch_assoc($search_query)){
 
           $post_title =  $row['post_title'];
           $post_author =  $row['post_author'];

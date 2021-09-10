@@ -83,7 +83,7 @@ include "includes/navigation.php";
         <hr>
 
          <a href="post.php?p_id=<?php echo $post_id; ?>">
-           <img class="img-responsive" src="images/<?php echo $post_image;?>" alt="">; 
+           <img class="img-responsive" src="images/<?php echo imagePlaceholder($post_image);?>" alt="">; 
          </a>
 
         <hr>
@@ -127,4 +127,23 @@ include "includes/navigation.php";
 <?php
 
 include "includes/footer.php";
+?>
+
+
+<?php
+  require __DIR__ . '/vendor/autoload.php';
+
+  $options = array(
+    'cluster' => 'eu',
+    'useTLS' => true
+  );
+  $pusher = new Pusher\Pusher(
+    'b905dca3905c1b4bc11a',
+    '1ce88db3e44b4634094d',
+    '1264849',
+    $options
+  );
+
+  $data['message'] = 'YOOOOO STUNDENTTTTTTTTTTTTTT';
+  $pusher->trigger('channel-1', 'event-1', $data);
 ?>
