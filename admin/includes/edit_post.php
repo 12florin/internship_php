@@ -216,7 +216,7 @@
       
     <div class="form-group">
 
-       <img width="100" src="../images/<?php echo $post_image; ?>" alt="">
+       <img width="200" src="/cms/images/<?php echo $post_image; ?>" alt="">
        <input  type="file" name="image">
       </div>
 

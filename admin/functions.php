@@ -10,6 +10,14 @@ function imagePlaceholder($image=''){
 }
 
 
+function query($query){
+
+    global $connection;
+
+    return mysqli_query($connection, $query);
+
+}
+
 
 function currentUser(){
     if(isset($_SESSION['username'])){
@@ -49,25 +57,46 @@ function isLoggedIn(){
 
         return true;
 
-
     }
-
-
    return false;
+}
+
+function loggedInUserId(){
+
+    if(isLoggedIn()){
+
+      $result = query("SELECT * FROM users WHERE username='".$_SESSION['username'] ."' ");
+      confirmQuery($result);
+      $user = mysqli_fetch_array($result);
+      return mysqli_num_rows($result) >=1 ? $user['user_id'] : false;
+    }
+    return false;
+}
+
+
+function userLikedThisPost($post_id){
+
+    $result = query("SELECT * FROM likes WHERE user_id=" .loggedInUserId()." AND post_id = {$post_id}" );
+    confirmQuery($result);
+    return mysqli_num_rows($result) >=1 ? true : false; //if is >=1 return true else false
 
 }
 
 function checkIfUserIsLoggedInAndRedirect($redirectLocation=null){
 
     if(isLoggedIn()){
-
         redirect($redirectLocation);
-
     }
-
 }
 
 
+function getPostLikes($post_id){
+
+    $result = query("SELECT * FROM likes WHERE post_id =$post_id");
+    confirmQuery($result);
+    echo mysqli_num_rows($result);
+
+}
 
 
 
@@ -79,7 +108,6 @@ return mysqli_real_escape_string($connection, trim($string));
 
 
 }
-
 
 
 function set_message($msg){
@@ -110,8 +138,6 @@ function display_message() {
 }
 
 
-
-
 function users_online() {
 
 
@@ -139,11 +165,9 @@ function users_online() {
 
             mysqli_query($connection, "INSERT INTO users_online(session, time) VALUES('$session','$time')");
 
-
             } else {
 
             mysqli_query($connection, "UPDATE users_online SET time = '$time' WHERE session = '$session'");
-
 
             }
 
@@ -153,18 +177,11 @@ function users_online() {
 
     }
 
-
-
-
-
-
-    } // get request isset()
-
+ } // get request isset()
 
 }
 
 users_online();
-
 
 
 
@@ -174,12 +191,8 @@ function confirmQuery($result) {
 
     if(!$result ) {
           
-          die("QUERY FAILED ." . mysqli_error($connection));
-   
-          
+          die("QUERY FAILED ." . mysqli_error($connection));  
       }
-    
-
 }
 
 
@@ -199,9 +212,6 @@ function insert_categories(){
     } else {
 
 
-
-
-
     $stmt = mysqli_prepare($connection, "INSERT INTO categories(cat_title) VALUES(?) ");
 
     mysqli_stmt_bind_param($stmt, 's', $cat_title);
@@ -213,9 +223,6 @@ function insert_categories(){
         die('QUERY FAILED'. mysqli_error($connection));
         
                   }
-
-
-        
              }
 
              
@@ -263,8 +270,6 @@ global $connection;
 
     }
             
-
-
 }
 
 
@@ -280,10 +285,6 @@ if(isset($_GET['unapprove'])){
     
     
     }
-
-    
-    
-
 }
 
 
@@ -329,10 +330,6 @@ function username_exists($username){
 
     }
 
-
-
-
-
 }
 
 
@@ -356,8 +353,6 @@ function email_exists($email){
 
     }
 
-
-
 }
 
 
@@ -377,10 +372,6 @@ function register_user($username, $email, $password){
         $register_user_query = mysqli_query($connection, $query);
 
         confirmQuery($register_user_query);
-
-        
-
-
 
 }
 
@@ -422,8 +413,6 @@ function register_user($username, $email, $password){
              $_SESSION['lastname'] = $db_user_lastname;
              $_SESSION['user_role'] = $db_user_role;
 
-
-
              redirect("/cms/admin");
 
 
@@ -432,21 +421,10 @@ function register_user($username, $email, $password){
 
              return false;
 
-
-
          }
-
-
 
      }
 
      return true;
 
  }
-
-
-
-
-
-
-

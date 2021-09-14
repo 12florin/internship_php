@@ -63,10 +63,10 @@ include "includes/navigation.php";
             
 
             ?>
-            <h1 class="page-header">
+            <!-- <h1 class="page-header">
             Page Heading
             <small>Secondary Text</small>
-        </h1>
+        </h1> -->
 
         <!-- First Blog Post -->
 
@@ -83,7 +83,7 @@ include "includes/navigation.php";
         <hr>
 
          <a href="post.php?p_id=<?php echo $post_id; ?>">
-           <img class="img-responsive" src="images/<?php echo imagePlaceholder($post_image);?>" alt="">; 
+         <img class="img-responsive" src="/cms/images/<?php echo $post_image?>" alt="">
          </a>
 
         <hr>
