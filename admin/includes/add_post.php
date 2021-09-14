@@ -5,7 +5,7 @@
    if(isset($_POST['create_post'])) {
    
             $post_title        = escape($_POST['title']);
-            $post_author         = escape($_POST['post_author']);
+            $post_author       = escape($_POST['post_author']);
             $post_category_id  = escape($_POST['post_category']);
             $post_status       = escape($_POST['post_status']);
     
@@ -34,7 +34,9 @@
 
       echo "<p class='bg-success'>Post Created. <a href='../post.php?p_id={$the_post_id}'>View Post </a> or <a href='posts.php'>Edit More Posts</a></p>";
        
-
+      $copyQuery= "UPDATE posts SET user_id = (SELECT user_id FROM users
+      WHERE users.username = posts.post_author)";
+      $updateQuery = mysqli_query($connection,$copyQuery);
 
    }
     
